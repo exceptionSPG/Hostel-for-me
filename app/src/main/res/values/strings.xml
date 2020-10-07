@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">Hostel</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Not Logged in</string>
+    <string name="nav_header_subtitle">Please Log in</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_location">Map</string>
+    <string name="menu_exit">Exit</string>
+    <string name="menu_login">Login</string>
+    <string name="menu_logout">Logout</string>
+    <string name="menu_admin_home">Home</string>
+    <string name="menu_admin_AllUser">User Manage</string>
+    <string name="menu_admin_enquiry">All Enquiry</string>
+    <string name="no_internet">There is no internet connection. Please try again later</string>
+    <string name="not_log_in">Not Logged In</string>
+    <string name="please_log_in">Please Log in.</string>
+
+    <string name="enquiry">Enquiry</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="onwer_login">Are you Hostel Owner?Click to Login.</string>
+
+
+    <!--Spinner for level education-->
+    <string-array name="level">
+        <item>School level</item>
+        <item>+2</item>
+        <item>Bachelor</item>
+        <item>Master</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="plustwo_stream">
+        <item>Science</item>
+        <item>Management</item>
+    </string-array>
+    <string-array name="bachelor_stream">
+        <item>MBBS</item>
+        <item>Engineering</item>
+        <item>BBA</item>
+        <item>BBM</item>
+        <item>BBS</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="masterr_stream">
+        <item>MD</item>
+        <item>ME</item>
+        <item>MBA</item>
+        <item>MBM</item>
+        <item>MBS</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Others</item>
+    </string-array>
+
+</resources>

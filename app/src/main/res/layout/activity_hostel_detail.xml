@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.HostelDetail"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:elevation="0dp"
+        android:gravity="center"
+        android:id="@+id/appbarid"
+        android:layout_weight="2"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:layout_gravity="right"
+                android:layout_marginEnd="4dp"
+                android:padding="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.252"
+                app:srcCompat="@drawable/main_logo" />
+
+            <TextView
+                android:id="@+id/tvHostelName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableStart="@drawable/ic_home"
+                android:drawablePadding="16dp"
+                android:paddingTop="5dp"
+                android:text="Hotsel Name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/profile_bg"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/tvLocation"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintHorizontal_bias="0.098"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.176" />
+
+            <TextView
+                android:id="@+id/tvLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="56dp"
+                android:drawableStart="@drawable/ic_location"
+                android:drawablePadding="16dp"
+                android:padding="5dp"
+                android:text="Hotsel Location"
+                android:textAppearance="@style/ThemeOverlay.AppCompat.Light"
+                android:textColor="@color/profile_bg"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvHostelName"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        android:id="@+id/tablayout_id"
+        app:tabTextColor="@color/tabTextColor"
+        app:tabIndicator="@color/tabIndicatorColor"
+        app:tabBackground="@color/colorChamkilo"
+        android:layout_weight="1"
+        >
+    </com.google.android.material.tabs.TabLayout>
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager_id"
+        android:layout_width="match_parent"
+        android:layout_height="269dp"
+        android:layout_weight="4">
+
+
+    </androidx.viewpager.widget.ViewPager>
+
+    <Button
+        android:id="@+id/btn_send_enquiry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/rectangle_bg"
+        android:text="Send Enquiry"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:layout_weight="3"/>
+
+</LinearLayout>
