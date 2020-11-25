@@ -22,7 +22,7 @@ import com.hfad.hostel.Fragment.HomeFragment;
 import com.hfad.hostel.Fragment.OwnerEnquiryFragment;
 import com.hfad.hostel.Fragment.OwnerHomeFragment;
 import com.hfad.hostel.Fragment.ProfileFragement;
-import com.hfad.hostel.Hostel_Near_MeFragment;
+
 import com.hfad.hostel.R;
 import com.hfad.hostel.Storage.SharedPrefManager;
 import com.hfad.hostel.model.User;
@@ -56,7 +56,7 @@ public class AdminHomeActivity extends AppCompatActivity implements NavigationVi
         toggle.syncState();
         openAdminLog();
         if(savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AdminHomeFragment()).commit();
+            getFragmentManager().beginTransaction().replace(R.id.fragment_container, new AdminHomeFragment()).commit();
 
         }
 
@@ -95,7 +95,7 @@ public class AdminHomeActivity extends AppCompatActivity implements NavigationVi
         switch (menuItem.getItemId()){
             case R.id.admin_nav_home:
                 //getSupportActionBar().setTitle((CharSequence) "Hostel Finder");
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AdminHomeFragment()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new AdminHomeFragment()).commit();
                 break;
             case R.id.admin_nav_AllUser:
                 Objects.requireNonNull(getSupportActionBar()).setTitle((CharSequence) "Manage User");

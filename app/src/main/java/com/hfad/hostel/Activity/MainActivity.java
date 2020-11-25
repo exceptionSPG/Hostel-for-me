@@ -23,12 +23,13 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.hfad.hostel.Fragment.EmptyFragment;
+import com.hfad.hostel.Fragment.Hostel_Near_MeFragment;
 import com.hfad.hostel.Fragment.OwnerEnquiryFragment;
 import com.hfad.hostel.Fragment.OwnerHomeFragment;
 import com.hfad.hostel.Fragment.HomeFragment;
 import com.hfad.hostel.Helper.Utilities;
-import com.hfad.hostel.Hostel_Near_MeFragment;
 import com.hfad.hostel.Fragment.ProfileFragement;
+import com.hfad.hostel.MapApi.MapsActivity;
 import com.hfad.hostel.R;
 import com.hfad.hostel.Storage.SharedPrefManager;
 import com.hfad.hostel.model.Owner;
@@ -268,8 +269,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragement()).commit();
                 break;
             case R.id.nav_location:
-                getSupportActionBar().setTitle((CharSequence) "Hostel Near Me");
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Hostel_Near_MeFragment()).commit();
+                startActivity(new Intent(MainActivity.this, MapsActivity.class));
+                //getSupportActionBar().setTitle((CharSequence) "Hostel Near Me");
+                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Hostel_Near_MeFragment()).commit();
                 break;
             case R.id.nav_Login:
                 if(SharedPrefManager.getInstance(this).isUserLoggedIn() || SharedPrefManager.getInstance(this).isOwnerLoggedIn()) {

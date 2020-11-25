@@ -1,4 +1,4 @@
-package com.hfad.hostel;
+package com.hfad.hostel.Fragment;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.hfad.hostel.R;
 
 
 public class Hostel_Near_MeFragment extends Fragment {

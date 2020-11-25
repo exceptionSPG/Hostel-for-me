@@ -27,7 +27,6 @@ import com.hfad.hostel.Activity.RegisterActivity;
 import com.hfad.hostel.Activity.StudentFurtherDetails;
 import com.hfad.hostel.Activity.UpdateUserData;
 import com.hfad.hostel.Helper.RetrofitClient;
-import com.hfad.hostel.Hostel_Near_MeFragment;
 import com.hfad.hostel.R;
 import com.hfad.hostel.Storage.SharedPrefManager;
 import com.hfad.hostel.model.User;

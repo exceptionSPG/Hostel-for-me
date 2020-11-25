@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hfad.hostel.Helper.RetrofitClient;
+import com.hfad.hostel.MapApi.AddLocationActivity;
 import com.hfad.hostel.R;
 import com.hfad.hostel.Storage.SharedPrefManager;
 import com.hfad.hostel.model.LoginResponse;
@@ -25,7 +26,7 @@ public class Owner_Login extends AppCompatActivity {
 
     EditText et_hostel_code, et_hostel_pwd;
     Button btn_owner_login;
-    TextView tv_goto_user;
+    TextView tv_goto_user,tv_add_new;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,16 @@ public class Owner_Login extends AppCompatActivity {
         et_hostel_pwd = (EditText) findViewById(R.id.et_hostel_password);
         btn_owner_login = (Button) findViewById(R.id.btn_Owner_Login);
         tv_goto_user = (TextView) findViewById(R.id.tv_goto_user_login);
+        tv_add_new = (TextView) findViewById(R.id.tvAddNew);
+        tv_add_new.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch(v.getId()){
+                    case R.id.tvAddNew:
+                        startActivity(new Intent(getApplicationContext(), AddLocationActivity.class));
+                }
+            }
+        });
 
         tv_goto_user.setOnClickListener(new View.OnClickListener() {
             @Override

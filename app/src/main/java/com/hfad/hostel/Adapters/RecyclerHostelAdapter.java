@@ -120,7 +120,7 @@ public class RecyclerHostelAdapter extends RecyclerView.Adapter<RecyclerHostelAd
         }
     };
 
-    public class viewHolder extends RecyclerView.ViewHolder{
+    public static class viewHolder extends RecyclerView.ViewHolder{
 
         ImageView hostel_image;
         TextView tv_hostel_name, tv_hostel_location;

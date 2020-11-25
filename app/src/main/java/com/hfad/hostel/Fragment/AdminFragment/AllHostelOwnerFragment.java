@@ -1,14 +1,12 @@
 package com.hfad.hostel.Fragment.AdminFragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
-
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -16,16 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Toast;
 
-import com.hfad.hostel.Adapters.RecyclerAllUserAdminHomeAdapter;
 import com.hfad.hostel.Adapters.RecyclerHostelAdminHomeAdapter;
 import com.hfad.hostel.Helper.RetrofitClient;
 import com.hfad.hostel.R;
-import com.hfad.hostel.model.AllUserResponse;
 import com.hfad.hostel.model.Owner;
 import com.hfad.hostel.model.OwnerInfoResponse;
-import com.hfad.hostel.model.User;
 
 import java.util.List;
 
@@ -33,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AdminHomeFragment extends Fragment {
+public class AllHostelOwnerFragment extends Fragment {
 
     SearchView searchView;
     RecyclerView recyclerView;
@@ -41,7 +35,7 @@ public class AdminHomeFragment extends Fragment {
     RecyclerHostelAdminHomeAdapter adapter;
     SwipeRefreshLayout refreshLayout;
 
-    public AdminHomeFragment() {
+    public AllHostelOwnerFragment() {
         // Required empty public constructor
     }
 
@@ -89,7 +83,6 @@ public class AdminHomeFragment extends Fragment {
             }
         });
 
-
     }
 
     private void fetchHostel(){
@@ -118,13 +111,12 @@ public class AdminHomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin_home, container, false);
+        return inflater.inflate(R.layout.fragment_all_hostel_owner, container, false);
     }
 }
