@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentActivity;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -13,6 +14,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.ChildEventListener;
@@ -29,6 +31,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ChildEventListener mChildEventListener;
     private DatabaseReference mUsers;
     Marker marker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +41,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         ChildEventListener mChildEventListener;
-        mUsers= FirebaseDatabase.getInstance().getReference("Hostels");
-        mUsers.push().setValue(marker);
+        mUsers= FirebaseDatabase.getInstance().getReference("Users").child("Hostels");
+        //mUsers.push().setValue(marker);
     }
 
     /**
@@ -56,30 +59,45 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
+//
 //        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
 //        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        Log.e("Map load: ",googleMap.toString());
         Toast.makeText(MapsActivity.this, "maps..", Toast.LENGTH_SHORT).show();
+
         googleMap.setOnMarkerClickListener(this);
-        googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//        LatLng sydney = new LatLng(27.32, 85.34);
+//        float zoomLevel = 16.0f; //This goes up to 21
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel));
         mUsers.addListenerForSingleValueEvent(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.e("Map pointer: ","datasnap "+dataSnapshot.exists()+" "+dataSnapshot.getRef().toString());//valeu : "+dataSnapshot.getValue().toString()
+
                 for (DataSnapshot s : dataSnapshot.getChildren()){
                     Toast.makeText(MapsActivity.this, "Showing..", Toast.LENGTH_SHORT).show();
                     HostelLocationInformation user = s.getValue(HostelLocationInformation.class);
                     LatLng location=new LatLng(user.lat,user.lon);
-                    mMap.addMarker(new MarkerOptions().position(location).title(user.hname)).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+
+                    //mMap.addMarker(new MarkerOptions().position(lt[i]).title(user.hname));
+                    mMap.addMarker(new MarkerOptions().position(location).title(user.hname)).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,16.0f));
+
+
+                    Log.e("Map pointer: ","Lat : lang "+location.latitude);
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                Log.e("Map pointer: ","db error ");
                 Toast.makeText(MapsActivity.this, "Db Error.."+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
-        
+
     }
 
     @Override

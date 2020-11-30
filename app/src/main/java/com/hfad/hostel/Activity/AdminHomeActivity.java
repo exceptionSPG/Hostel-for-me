@@ -23,6 +23,7 @@ import com.hfad.hostel.Fragment.OwnerEnquiryFragment;
 import com.hfad.hostel.Fragment.OwnerHomeFragment;
 import com.hfad.hostel.Fragment.ProfileFragement;
 
+import com.hfad.hostel.MapApi.AddLocationActivity;
 import com.hfad.hostel.R;
 import com.hfad.hostel.Storage.SharedPrefManager;
 import com.hfad.hostel.model.User;
@@ -102,8 +103,9 @@ public class AdminHomeActivity extends AppCompatActivity implements NavigationVi
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AdminUserManageFragment()).commit();
                 break;
             case R.id.admin_nav_enquiry:
-                Objects.requireNonNull(getSupportActionBar()).setTitle((CharSequence) "All Enquiry");
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AdminAllEnquiryFragment()).commit();
+                startActivity(new Intent(AdminHomeActivity.this, AddLocationActivity.class));
+//                Objects.requireNonNull(getSupportActionBar()).setTitle((CharSequence) "All Enquiry");
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AdminAllEnquiryFragment()).commit();
                 break;
             case R.id.admin_nav_Login:
                 if(SharedPrefManager.getInstance(this).isUserLoggedIn()) {

@@ -48,7 +48,7 @@ public class AddLocationActivity extends AppCompatActivity implements View.OnCli
         double longitude= Double.parseDouble(editTextLongitude.getText().toString().trim());
         HostelLocationInformation userInformation=new HostelLocationInformation(hcode,name,latitude,longitude);
         mDatabase.child("Hostels").push().setValue(userInformation);
-        //mDatabase.child("numbers").push().setValue(1);
+        //mDatabase.child("numbers").push().setValue(1); .child(userInformation.hcode)
         Toast.makeText(this,"Saved",Toast.LENGTH_LONG).show();
     }
     @Override

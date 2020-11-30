@@ -29,6 +29,7 @@ import com.hfad.hostel.Fragment.OwnerHomeFragment;
 import com.hfad.hostel.Fragment.HomeFragment;
 import com.hfad.hostel.Helper.Utilities;
 import com.hfad.hostel.Fragment.ProfileFragement;
+import com.hfad.hostel.MapApi.AddLocationActivity;
 import com.hfad.hostel.MapApi.MapsActivity;
 import com.hfad.hostel.R;
 import com.hfad.hostel.Storage.SharedPrefManager;
@@ -285,10 +286,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_share:
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT, "Sharing App");
+                Intent intent = new Intent(MainActivity.this, AddLocationActivity.class);
+//                intent.setAction(Intent.ACTION_SEND);
+//                intent.setType("text/plain");
+//                intent.putExtra(Intent.EXTRA_TEXT, "Sharing App");
                 startActivity(intent);
                 Toast.makeText(this, "Share clicked", Toast.LENGTH_SHORT).show();
                 break;
