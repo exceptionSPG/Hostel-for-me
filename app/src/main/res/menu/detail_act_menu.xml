@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="Enquiry"
+        android:id="@+id/det_enquiry"
+        app:showAsAction="ifRoom|collapseActionView"
+        android:icon="@drawable/goal"/>
+    <item
+        android:title="Facebook"
+        android:id="@+id/det_facebook"
+        android:icon="@drawable/ic_facebook_logo"
+        app:showAsAction="withText"/>
+    <item
+        android:title="Twitter"
+        android:id="@+id/det_twitter"
+        android:icon="@drawable/ic_twitter"
+        app:showAsAction="never"/>
+
+</menu>
