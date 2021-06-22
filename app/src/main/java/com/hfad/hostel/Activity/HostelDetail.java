@@ -25,13 +25,20 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.tabs.TabLayout;
+import com.hfad.hostel.Helper.RetrofitClient;
 import com.hfad.hostel.R;
 import com.hfad.hostel.Storage.SharedPrefManager;
 import com.hfad.hostel.model.Owner;
 import com.hfad.hostel.model.OwnerAllDetailsByHostelCode;
+import com.hfad.hostel.model.OwnerInfoResponse;
+import com.hfad.hostel.model.hostelInfoByHostelCodeResponse;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HostelDetail extends AppCompatActivity {
     TabLayout tabLayout;
@@ -41,11 +48,13 @@ public class HostelDetail extends AppCompatActivity {
     List<SlideModel> imageList = new ArrayList<>(); // Create image list
     ImageSlider imageSlider;
 
-    OwnerAllDetailsByHostelCode allDetailsByHostelCode;
+    OwnerAllDetailsByHostelCode allDetailsByHostelCode;  //first call api then access data
     Owner owner;
     TextView tv_name, tv_hostel_location, tv_hostel_facility;
     String hostel_code, hostel_name,hostel_location;
 
+    //hostel all details
+    //OwnerAllDetailsByHostelCode ownerAllDetailsByHostelCode = new OwnerAllDetailsByHostelCode();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,12 +71,16 @@ public class HostelDetail extends AppCompatActivity {
         hostel_name = intent.getStringExtra("name");
         hostel_location = intent.getStringExtra("location");
 
+        //tv_name.setText(allDetailsByHostelCode.getContact_number());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         CollapsingToolbarLayout collapsingToolbarLayout =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
 //        show the title for the ToolBar and it looks like
         collapsingToolbarLayout.setTitle(hostel_name);
+        //tv_name.setText(hostel_name);
+        tv_hostel_location.setText(hostel_location);
+        getHostelAllDetails();
         ImageView img_back = findViewById(R.id.img_back);
         //img_back.setVisibility(View.INVISIBLE);
         AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
@@ -121,26 +134,6 @@ public class HostelDetail extends AppCompatActivity {
 
         SharedPrefManager.getInstance(this).saveCode(hostel_code);
 
-//        getSupportActionBar().setTitle((CharSequence) hostel_name);
-//        tv_name.setText(hostel_name);
-//        tv_hostel_location.setText(hostel_location);
-//        tabLayout = (TabLayout) findViewById(R.id.tablayout_id);
-//        appBarLayout = (AppBarLayout) findViewById(R.id.appbarid);
-//        viewPager = (ViewPager) findViewById(R.id.viewpager_id);
-
-//        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-//        //adding fragment
-//        viewPagerAdapter.AddFragment(new FragmentHostelDetails(),"Hostel Details");
-//        viewPagerAdapter.AddFragment(new FragmentPricing(),"Hostel Price");
-//        viewPagerAdapter.AddFragment(new FragmentFacility(),"Hostel Facility");
-
-        //setup viewpager
-//        viewPager.setAdapter(viewPagerAdapter);
-//        tabLayout.setupWithViewPager(viewPager);
-//        tabLayout.setSelectedTabIndicator(R.color.colorChamkilo);
-
-
-//
 
         //detailShow();
 //        showOwnerDetail();
@@ -241,6 +234,9 @@ public class HostelDetail extends AppCompatActivity {
        });
     }*/
 
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -257,7 +253,8 @@ public class HostelDetail extends AppCompatActivity {
             case R.id.det_enquiry:
                 Toast.makeText(this, "Enquiry to owner..", Toast.LENGTH_SHORT).show();
                 //your code
-                // EX : call intent if you want to swich to other activity 
+                // EX : call intent if you want to swich to other activity
+                fillDialogbox();
                 return true;
             case R.id.det_facebook:
                 Toast.makeText(this, "owner Facebook..", Toast.LENGTH_SHORT).show();
@@ -273,6 +270,10 @@ public class HostelDetail extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+    //to fill enquiry and send
+    public void fillDialogbox(){
+
+    }
 
     public void statusColorChange(){
         /*-------Status Color Code To Change--------*/
@@ -282,5 +283,27 @@ public class HostelDetail extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.white));
         }
+    }
+
+    //method to access all info by hostel code
+    public void getHostelAllDetails(){
+        Call<hostelInfoByHostelCodeResponse> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .getHostelInfoByHostelCode(hostel_code);
+        call.enqueue(new Callback<hostelInfoByHostelCodeResponse>() {
+            @Override
+            public void onResponse(Call<hostelInfoByHostelCodeResponse> call, Response<hostelInfoByHostelCodeResponse> response) {
+                Toast.makeText(HostelDetail.this, "on details load onResponse."+allDetailsByHostelCode.getMessage(), Toast.LENGTH_SHORT).show();
+
+                allDetailsByHostelCode = response.body().getOwnerAllDetailsByHostelCode();
+                tv_name.setText(allDetailsByHostelCode.getMessage());
+            }
+
+            @Override
+            public void onFailure(Call<hostelInfoByHostelCodeResponse> call, Throwable t) {
+                Toast.makeText(HostelDetail.this, "on details load onFailure.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

@@ -261,7 +261,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportActionBar().setTitle((CharSequence) "Hostel Finder");
 //                if (!Utilities.isConnectionAvailable(this)) {
 //                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new EmptyFragment()).commit();
-//                }else {
+//                  }else {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
                 //}
                 break;

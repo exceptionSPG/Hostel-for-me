@@ -48,7 +48,7 @@
 <!--                android:scaleType="centerCrop"-->
 <!--                android:src="@drawable/back"-->
 <!--                app:layout_collapseMode="parallax" >-->
-<!--                -->this is demo text dejlijjjjj jiraurajiela ijjjjlslald
+<!--                -->
 <!--            </ImageView>-->
 
             <androidx.appcompat.widget.Toolbar
