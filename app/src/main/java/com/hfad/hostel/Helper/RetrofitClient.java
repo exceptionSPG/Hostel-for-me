@@ -6,7 +6,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    private static final String BASE_URL = "https://mynotesappwebsite.000webhostapp.com/MyApi/public/";//"http://192.168.43.56/MyApi/public/"; //https://mynotesappwebsite.000webhostapp.com/MyApi/MyApi/public/
+    private static final String BASE_URL = "http://192.168.43.56/HF_Online/public/";//"https://mynotesappwebsite.000webhostapp.com/MyApi/public/";//"http://192.168.43.56/MyApi/public/"; //https://mynotesappwebsite.000webhostapp.com/MyApi/MyApi/public/
     private static RetrofitClient mInstance;
     private Retrofit hostelRetrofit;
 
