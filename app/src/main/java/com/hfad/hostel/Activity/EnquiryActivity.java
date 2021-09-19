@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,8 @@ import com.hfad.hostel.R;
 import com.hfad.hostel.model.DefaultResponse;
 import com.hfad.hostel.model.hostelInfoByHostelCodeResponse;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -54,7 +57,7 @@ public class EnquiryActivity extends AppCompatActivity {
         eq_uname = (TextView) findViewById(R.id.eq_dbox_tv_user_name);
         eq_uemail = (TextView) findViewById(R.id.eq_dboxtv_user_email);
         eq_uphone = (TextView) findViewById(R.id.eq_dbox_tv_user_phone);
-        et_user_message = (EditText) findViewById(R.id.eq_et_user_message);
+        et_user_message = (EditText) findViewById(R.id.aeq_et_user_message);
 
         eq_hname.setText(hostel_name);
         eq_haddress.setText(hostel_address);
@@ -65,24 +68,85 @@ public class EnquiryActivity extends AppCompatActivity {
 
         eq_btnSend = (Button) findViewById(R.id.eq_btn_send);
         eq_btnCancel = (Button) findViewById(R.id.eq_btn_cancel);
-        enquiry_message = et_user_message.getText().toString();
+        enquiry_message = et_user_message.getText().toString().trim();
+
         eq_btnSend.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(enquiry_message.isEmpty()){
+//                        et_user_message.setError("Please enter message.");
+//                        et_user_message.requestFocus();
+                        enquiry_message = "I want to hyaa mula lyaang layisakyo";
+                    }
                         Toast.makeText(EnquiryActivity.this, "Button Send.", Toast.LENGTH_SHORT).show();
                         //send enquiry gare paxi database ma data update garera ani owner lai msg ra mail jawos hai
 
-                        Toast.makeText(getApplicationContext(), "Enquiry Sent.", Toast.LENGTH_SHORT).show();
+                    RequestBody buserid = RequestBody.create(MediaType.parse("text/plain"),
+                            String.valueOf(userid));
+                    RequestBody bownerid = RequestBody.create(MediaType.parse("text/plain"),
+                            String.valueOf(ownerid));
+                    RequestBody buser_name = RequestBody.create(MediaType.parse("text/plain"),
+                            user_name);
+                    RequestBody buser_email = RequestBody.create(MediaType.parse("text/plain"),
+                            user_email);
+                    RequestBody buser_phone = RequestBody.create(MediaType.parse("text/plain"),
+                            user_phone);
+                    RequestBody bowner_name = RequestBody.create(MediaType.parse("text/plain"),
+                            owner_name);
+                    RequestBody bhostel_name = RequestBody.create(MediaType.parse("text/plain"),
+                            hostel_name);
+                    RequestBody bhostel_address = RequestBody.create(MediaType.parse("text/plain"),
+                            hostel_address);
+                    RequestBody benquiry_message = RequestBody.create(MediaType.parse("text/plain"),
+                            enquiry_message);
+                    Log.d("Request Body: ", bhostel_name.toString());
+                    Toast.makeText(EnquiryActivity.this, "Request body: "+buser_name, Toast.LENGTH_SHORT).show();
                         Call<DefaultResponse> call = RetrofitClient
                                 .getInstance()
                                 .getApi()
-                                .insertEnquiry(userid, ownerid, user_name, user_email, user_phone, owner_name, hostel_name, hostel_address, enquiry_message);
+                                .insertEnquiry(buserid, bownerid, buser_name, buser_email, buser_phone, bowner_name, bhostel_name, bhostel_address, benquiry_message);
+
+
+
+                        Log.d("Call Onclick: ", "onClick: user message: "+enquiry_message);
                         call.enqueue(new Callback<DefaultResponse>() {
                             @Override
                             public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+
                                 DefaultResponse defaultResponse = response.body();
-                                Toast.makeText(EnquiryActivity.this, "Message: " + response.errorBody()+response.body().toString(), Toast.LENGTH_SHORT).show();
-                                //db ma save vayo aba owner lai mail garne ani mbl ma msg garne
+                                Log.d("Call request", call.request().toString());
+                                Log.d("Call request header", call.request().headers().toString());
+                                Toast.makeText(EnquiryActivity.this, "request header: "+ call.request().headers().toString(), Toast.LENGTH_SHORT).show();
+
+
+                                Log.d("Response raw header", response.headers().toString());
+                                Toast.makeText(EnquiryActivity.this, "response code: "+ response.headers(), Toast.LENGTH_SHORT).show();
+
+                                Log.d("Response raw", String.valueOf(response.raw().body()));
+                                Toast.makeText(EnquiryActivity.this, "response raw: "+ response.raw(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(EnquiryActivity.this, "response error: "+ response.errorBody(), Toast.LENGTH_SHORT).show();
+
+                                Log.d("Response code", String.valueOf(response.code()));
+                                Toast.makeText(EnquiryActivity.this, "response code: "+ response.code(), Toast.LENGTH_SHORT).show();
+
+                                //stack overflow code snippets
+                                if(response.isSuccessful()) {
+                                    Toast.makeText(getApplicationContext(), "Enquiry Sent.", Toast.LENGTH_SHORT).show();
+                                    //the response-body is already parseable to your ResponseBody object
+                                    DefaultResponse responseBody = (DefaultResponse) response.body();
+                                    //you can do whatever with the response body now...
+                                    assert responseBody != null;
+                                    String responseBodyString= responseBody.toString();
+                                    Log.d("Response body: ", responseBodyString);
+                                }
+                                else  {
+                                    Log.d("Response errorBody", String.valueOf(response.errorBody()));
+                                }
+
+//                                Log.d("Enquiry Activity: ", "onResponse:Heyluu mayaluu ");
+//
+//                                Toast.makeText(EnquiryActivity.this, "Message: ", Toast.LENGTH_SHORT).show();
+//                                //db ma save vayo aba owner lai mail garne ani mbl ma msg garne
 
                             }
 

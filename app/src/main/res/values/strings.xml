@@ -18,9 +18,14 @@
     <string name="menu_admin_home">Home</string>
     <string name="menu_admin_AllUser">User Manage</string>
     <string name="menu_admin_enquiry">All Enquiry</string>
+    <string name="menu_admin_AllOwner">Owner Manage</string>
+    <string name="menu_admin_requests">New Requests</string>
     <string name="no_internet">There is no internet connection. Please try again later</string>
     <string name="not_log_in">Not Logged In</string>
     <string name="please_log_in">Please Log in.</string>
+
+    <string name="dialog_message">Do you want to Delete?</string>
+    <string name="dialog_title">Delete user?</string>
 
 
     <string name="lorem_ipsum_dolor_sit_amet_consetetur_nsadipscing_elitr_sed_diam_nonumy">Lorem ipsum dolor sit amet, consetetur\nsadipscing elitr, sed diam nonumy</string>

@@ -1,20 +1,27 @@
 package com.hfad.hostel.Activity;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
@@ -31,7 +38,10 @@ import com.hfad.hostel.Storage.SharedPrefManager;
 import com.hfad.hostel.model.Owner;
 import com.hfad.hostel.model.OwnerAllDetailsByHostelCode;
 import com.hfad.hostel.model.OwnerInfoResponse;
+import com.hfad.hostel.model.User;
+import com.hfad.hostel.model.UserInfo;
 import com.hfad.hostel.model.hostelInfoByHostelCodeResponse;
+import com.hfad.hostel.model.userAllInfoByUid;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,15 +55,20 @@ public class HostelDetail extends AppCompatActivity {
     TabLayout tabLayout;
     AppBarLayout appBarLayout;
     ViewPager viewPager;
+    SharedPrefManager sharedPrefManager;
+    int ownerId;
+    String ownerName;
 
     List<SlideModel> imageList = new ArrayList<>(); // Create image list
     ImageSlider imageSlider;
     String about_us_all = " ";
+    //static String h_name, hostel_address, user_name,user_email,user_phone;
 
     OwnerAllDetailsByHostelCode allDetailsByHostelCode;  //first call api then access data
     Owner owner;
     TextView tv_name, tv_hostel_location, tv_hostel_facility, tv_pricing, tv_about_us;
     String hostel_code, hostel_name,hostel_location;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +91,7 @@ public class HostelDetail extends AppCompatActivity {
         hostel_location = intent.getStringExtra("location");
 
         //tv_name.setText(allDetailsByHostelCode.getContact_number());
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        androidx.appcompat.widget.Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         CollapsingToolbarLayout collapsingToolbarLayout =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
@@ -161,7 +176,22 @@ public class HostelDetail extends AppCompatActivity {
                 Toast.makeText(this, "Enquiry to owner..", Toast.LENGTH_SHORT).show();
                 //your code
                 // EX : call intent if you want to swich to other activity
-                fillDialogbox();
+                User user = SharedPrefManager.getInstance(this).getUser();
+                userAllInfoByUid userInfo = SharedPrefManager.getInstance(this).getUserInfo();
+                Intent intent = new Intent(HostelDetail.this,EnquiryActivity.class);
+                //`userid`, `ownerid`, `user_name`, `user_email`, `user_phone`, `owner_name`, `hostel_name`, `hostel_address`, `, `enquiry_message`,
+                intent.putExtra("userid",user.getUser_id());
+                intent.putExtra("ownerid",ownerId);
+                intent.putExtra("owner_name",ownerName);
+                intent.putExtra("hname",hostel_name);
+                intent.putExtra("haddress",hostel_location);
+                intent.putExtra("user_name",user.getUsername());
+                intent.putExtra("user_email",user.getEmail());
+                intent.putExtra("user_phone",userInfo.getUser_phone_number());
+                Toast.makeText(this, "user phone:"+userInfo.getUser_phone_number(), Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+
+                //customDialog(getApplicationContext(),hostel_name,hostel_location,user.getUsername(),user.getEmail(),userInfo.getUser_phone_number());
                 return true;
             case R.id.det_facebook:
                 Toast.makeText(this, "owner Facebook..", Toast.LENGTH_SHORT).show();
@@ -178,9 +208,51 @@ public class HostelDetail extends AppCompatActivity {
         }
     }
     //to fill enquiry and send
-    public void fillDialogbox(){
+        public static void fillDialogbox(Context context, String hname,
+                                         String haddress, String uname, String uemail, String uphone) {
+            final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                    context);
+            LayoutInflater inflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View view = inflater.inflate(R.layout.enquiry_dialog_layout, null);
+            alertDialogBuilder.setView(view);
+            alertDialogBuilder.setCancelable(false);
+            final AlertDialog dialog = alertDialogBuilder.create();
+            dialog.show();
 
     }
+    public void customDialog(Context context,String hname,
+                             String haddress, String uname, String uemail, String uphone){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        // Get the layout inflater
+        LayoutInflater inflater = getLayoutInflater();
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the
+        // dialog layout
+        builder.setTitle("title");
+        builder.setCancelable(false);
+        builder.setIcon(R.drawable.ic_email);
+        View view = inflater.inflate(R.layout.enquiry_dialog_layout, null);
+        builder.setView(view);
+
+
+        // Add action buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        //send data
+                    }
+    })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+    builder.create();
+    builder.show();
+    }
+
 
     public void statusColorChange(){
         /*-------Status Color Code To Change--------*/
@@ -203,12 +275,16 @@ public class HostelDetail extends AppCompatActivity {
             public void onResponse(Call<hostelInfoByHostelCodeResponse> call, Response<hostelInfoByHostelCodeResponse> response) {
                 allDetailsByHostelCode = response.body().getOwnerAllDetailsByHostelCode();
 
+
+
                 Toast.makeText(HostelDetail.this, "on details load onResponse."+allDetailsByHostelCode.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "onResponse: fetching.."+allDetailsByHostelCode.getMessage());
                 tv_hostel_facility.setText(allDetailsByHostelCode.getFacility());
                 tv_pricing.setText(allDetailsByHostelCode.getPricing());
                 about_us_all = about_us_all .concat("Owned By: "+allDetailsByHostelCode.getHostel_owner_name()+"\nHostel Type: "+allDetailsByHostelCode.getHostel_type()+"\nContact Number: "+allDetailsByHostelCode.getContact_number()+"\nHostel e-mail: "+allDetailsByHostelCode.getHostel_email()+"\nRegistered on Hostel Finder: "+allDetailsByHostelCode.getHostel_registered_date());
                 tv_about_us.setText(about_us_all);
+                ownerId = allDetailsByHostelCode.getSid();
+                ownerName = allDetailsByHostelCode.getHostel_owner_name();
 
             }
 

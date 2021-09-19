@@ -12,6 +12,15 @@
             android:icon="@drawable/ic_person"
             android:title="@string/menu_admin_AllUser" />
         <item
+            android:id="@+id/admin_nav_AllOwner"
+            android:icon="@drawable/ic_person"
+            android:title="@string/menu_admin_AllOwner" />
+
+        <item
+            android:id="@+id/admin_nav_request"
+            android:icon="@drawable/ic_email"
+            android:title="@string/menu_admin_requests" />
+        <item
             android:id="@+id/admin_nav_enquiry"
             android:icon="@drawable/ic_email"
             android:title="@string/menu_admin_enquiry" />

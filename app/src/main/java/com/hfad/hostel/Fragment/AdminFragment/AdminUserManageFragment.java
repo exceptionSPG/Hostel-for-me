@@ -1,20 +1,25 @@
 package com.hfad.hostel.Fragment.AdminFragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.provider.CalendarContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.hfad.hostel.Adapters.RecyclerAllUserAdminHomeAdapter;
@@ -35,8 +40,10 @@ import retrofit2.Response;
 
 public class AdminUserManageFragment extends Fragment {
 
+
     SearchView searchView;
     RecyclerView recyclerView;
+    DrawerLayout myDrawer;
     List<User> userList;
     User user;
     RecyclerAllUserAdminHomeAdapter mAdapter;
@@ -54,18 +61,21 @@ public class AdminUserManageFragment extends Fragment {
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
         refreshLayout = view.findViewById(R.id.swipe_refresh_layout_user_all);
 
+
+
+
 //        StaggeredGridLayoutManager st = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.HORIZONTAL);
 //        recyclerView.setLayoutManager(st);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
-        recyclerView.setLayoutManager(gridLayoutManager);
+        /*GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
+        recyclerView.setLayoutManager(gridLayoutManager);*/
 
 
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
 //        recyclerView.setLayoutManager(layoutManager);
 
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,true);
-//        recyclerView.setLayoutManager(layoutManager);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,true);
+        recyclerView.setLayoutManager(layoutManager);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -85,13 +95,16 @@ public class AdminUserManageFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                fetchAllUser();
                 mAdapter.getFilter().filter(newText);
                 return false;
             }
         });
 
 
+
     }
+
     private void fetchAllUser(){
         refreshLayout.setRefreshing(true);
         Call<AllUserResponse> call = RetrofitClient
@@ -136,6 +149,8 @@ public class AdminUserManageFragment extends Fragment {
 
         // Inflate the layout for this fragment
         Toast.makeText(getActivity(), "on create view.", Toast.LENGTH_SHORT).show();
+        myDrawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+        myDrawer.setBackground(null);
         return inflater.inflate(R.layout.fragment_admin_user_manage, container, false);
     }
 

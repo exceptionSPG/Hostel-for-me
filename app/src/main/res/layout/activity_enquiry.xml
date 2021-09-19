@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.EnquiryActivity"
+    android:background="#ffffff">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_collapseMode="pin"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="15.3dp"
+            android:layout_marginTop="12.9dp"
+            android:src="@drawable/ic_back"/>
+    </androidx.appcompat.widget.Toolbar>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:orientation="vertical"
+            android:padding="10dp"
+            >
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="120px"
+
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Enquiry Details"
+                    android:textAlignment="center"
+                    android:textAppearance="@font/sf_pro_display_light"
+                    android:textColorHighlight="@color/white"
+                    android:padding="8px"
+                    android:layout_marginBottom="8px"
+                    />
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:drawablePadding="16dp"
+                android:weightSum="100"
+                android:background="@color/profile_bg">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_home"
+                    android:ems="7"
+                    android:textSize="14sp"
+                    android:text="Hostel Name: "
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:id="@+id/eq_dbox_tv_hostel_name"
+                    android:layout_width="match_parent"
+                    android:ems="8"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:layout_height="match_parent"
+                    />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:drawablePadding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_location"
+                    android:ems="6"
+                    android:textSize="16sp"
+                    android:text="Address: "
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:ems="8"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/eq_dbox_tv_hostel_address"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:drawablePadding="16dp"
+                android:background="@color/profile_bg">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_person"
+                    android:ems="6"
+                    android:textSize="16sp"
+                    android:text="User Name: "
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:ems="8"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/eq_dbox_tv_user_name"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:drawablePadding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_email"
+                    android:ems="6"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="User Email: "
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:ems="8"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/eq_dboxtv_user_email"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:drawablePadding="16dp"
+                android:background="@color/profile_bg">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_baseline_call_24"
+                    android:ems="6"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="User Phone: "
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:ems="8"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/eq_dbox_tv_user_phone"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:drawablePadding="16dp">
+
+
+                <EditText
+                    android:id="@+id/aeq_et_user_message"
+                    android:ems="10"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/txt_black"
+                    android:hint="I want to stay for 2 months."
+                    android:autofillHints="I want to stay for 2 months."
+                    android:minLines="4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:drawablePadding="16dp">
+                <Button
+                    android:id="@+id/eq_btn_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_bg"
+                    android:padding="10dp"
+                    android:layout_marginRight="10px"
+                    android:text="Cancel"
+                    android:ems="8"
+                    android:textColor="#651FFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <Button
+                    android:id="@+id/eq_btn_send"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_bg"
+                    android:padding="10dp"
+                    android:layout_gravity=""
+                    android:layout_marginLeft="10px"
+                    android:ems="6"
+                    android:text="Send"
+                    android:textColor="#651FFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+</LinearLayout>
+
+    </ScrollView>
+</FrameLayout>

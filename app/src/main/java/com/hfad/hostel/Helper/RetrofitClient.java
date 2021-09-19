@@ -1,4 +1,4 @@
-package com.hfad.hostel.Helper;
+ package com.hfad.hostel.Helper;
 
 import com.hfad.hostel.Interface.Api;
 
@@ -6,7 +6,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    private static final String BASE_URL = "http://192.168.43.56/HF_Online/public/";//"https://mynotesappwebsite.000webhostapp.com/MyApi/public/";//"http://192.168.43.56/MyApi/public/"; //https://mynotesappwebsite.000webhostapp.com/MyApi/MyApi/public/
+    private static final String BASE_URL = "http://192.168.221.73:8080/HF_Online/public/";
+    //Samsung : 192.168.56.73
+    //"http://192.168.43.56/HF_Online/public/";//"https://mynotesappwebsite.000webhostapp.com/MyApi/public/";//"http://192.168.43.56/MyApi/public/"; //https://mynotesappwebsite.000webhostapp.com/MyApi/MyApi/public/
     private static RetrofitClient mInstance;
     private Retrofit hostelRetrofit;
 

@@ -7,17 +7,22 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.hfad.hostel.Activity.Admin.AdminUserManageAcitivity;
 import com.hfad.hostel.Fragment.AdminFragment.AdminAllEnquiryFragment;
 import com.hfad.hostel.Fragment.AdminFragment.AdminHomeFragment;
 import com.hfad.hostel.Fragment.AdminFragment.AdminUserManageFragment;
+import com.hfad.hostel.Fragment.AdminFragment.AllHostelOwnerFragment;
 import com.hfad.hostel.Fragment.HomeFragment;
 import com.hfad.hostel.Fragment.OwnerEnquiryFragment;
 import com.hfad.hostel.Fragment.OwnerHomeFragment;
@@ -36,6 +41,8 @@ public class AdminHomeActivity extends AppCompatActivity implements NavigationVi
     Toolbar toolbar;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
+    FrameLayout frag_container_admin;
+    //String selectedFrag = "AdminHomeFragment";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +50,7 @@ public class AdminHomeActivity extends AppCompatActivity implements NavigationVi
         setContentView(R.layout.activity_admin_home);
         toolbar = findViewById(R.id.toolbar);
         drawer = findViewById(R.id.drawer_layout);
+        frag_container_admin = findViewById(R.id.fragment_container_admin);
 
         navigationView = findViewById(R.id.nav_view);
 
@@ -57,7 +65,7 @@ public class AdminHomeActivity extends AppCompatActivity implements NavigationVi
         toggle.syncState();
         openAdminLog();
         if(savedInstanceState == null){
-            getFragmentManager().beginTransaction().replace(R.id.fragment_container, new AdminHomeFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(frag_container_admin.getId(), new AdminHomeFragment()).commit();
 
         }
 
@@ -95,18 +103,35 @@ public class AdminHomeActivity extends AppCompatActivity implements NavigationVi
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.admin_nav_home:
+
                 //getSupportActionBar().setTitle((CharSequence) "Hostel Finder");
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new AdminHomeFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_admin, new AdminHomeFragment()).commit();
+
                 break;
             case R.id.admin_nav_AllUser:
+//                startActivity(new Intent(AdminHomeActivity.this, AdminUserManageAcitivity.class));
+                frag_container_admin.setBackgroundColor(Color.WHITE);
                 Objects.requireNonNull(getSupportActionBar()).setTitle((CharSequence) "Manage User");
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AdminUserManageFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_admin, new AdminUserManageFragment()) .commit();
                 break;
             case R.id.admin_nav_enquiry:
-                startActivity(new Intent(AdminHomeActivity.this, AddLocationActivity.class));
-//                Objects.requireNonNull(getSupportActionBar()).setTitle((CharSequence) "All Enquiry");
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AdminAllEnquiryFragment()).commit();
+                //startActivity(new Intent(AdminHomeActivity.this, AddLocationActivity.class));
+                Objects.requireNonNull(getSupportActionBar()).setTitle((CharSequence) "All Enquiry");
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_admin, new AdminAllEnquiryFragment()).commit();
                 break;
+
+            case R.id.admin_nav_AllOwner:
+                //startActivity(new Intent(AdminHomeActivity.this, AddLocationActivity.class));
+                Objects.requireNonNull(getSupportActionBar()).setTitle((CharSequence) "Manage Owner");
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_admin, new AllHostelOwnerFragment()).commit();
+                break;
+            case R.id.admin_nav_request:
+                //startActivity(new Intent(AdminHomeActivity.this, AddLocationActivity.class));
+                Objects.requireNonNull(getSupportActionBar()).setTitle((CharSequence) "Pending Requests");
+
+                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_admin, new AdminAllEnquiryFragment()).commit();
+                break;
+
             case R.id.admin_nav_Login:
                 if(SharedPrefManager.getInstance(this).isUserLoggedIn()) {
                     SharedPrefManager.getInstance(this).clear();
@@ -122,4 +147,5 @@ public class AdminHomeActivity extends AppCompatActivity implements NavigationVi
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
