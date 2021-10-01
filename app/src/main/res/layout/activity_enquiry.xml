@@ -16,20 +16,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_collapseMode="pin"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
-        <ImageView
-            android:id="@+id/img_back"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="15.3dp"
-            android:layout_marginTop="12.9dp"
-            android:src="@drawable/ic_back"/>
-    </androidx.appcompat.widget.Toolbar>
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/toolbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="?attr/actionBarSize"-->
+<!--        app:layout_collapseMode="pin"-->
+<!--        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >-->
+<!--        <ImageView-->
+<!--            android:id="@+id/img_back"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_marginStart="15.3dp"-->
+<!--            android:layout_marginTop="12.9dp"-->
+<!--            android:src="@drawable/ic_back"/>-->
+<!--    </androidx.appcompat.widget.Toolbar>-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,7 +48,8 @@
                     android:layout_height="match_parent"
                     android:text="Enquiry Details"
                     android:textAlignment="center"
-                    android:textAppearance="@font/sf_pro_display_light"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColorHighlight="@color/white"
                     android:padding="8px"
                     android:layout_marginBottom="8px"

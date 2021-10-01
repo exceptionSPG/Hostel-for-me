@@ -22,5 +22,7 @@
     <color name="light_black">#272727</color>
     <color name="bg_color">#f2f3f4</color>
     <color name="red">#f22c2c</color>
+    <color name="request_pending">#5E5D5D</color>
+    <color name="request_approved">#ABACAE</color>
     <color name="light_silver">#c2c4ca</color>
 </resources>

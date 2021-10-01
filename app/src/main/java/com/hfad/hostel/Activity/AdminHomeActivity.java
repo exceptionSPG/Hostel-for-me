@@ -7,7 +7,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,20 +14,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
-import com.hfad.hostel.Activity.Admin.AdminUserManageAcitivity;
 import com.hfad.hostel.Fragment.AdminFragment.AdminAllEnquiryFragment;
 import com.hfad.hostel.Fragment.AdminFragment.AdminHomeFragment;
+import com.hfad.hostel.Fragment.AdminFragment.AdminRequestManageFragment;
 import com.hfad.hostel.Fragment.AdminFragment.AdminUserManageFragment;
 import com.hfad.hostel.Fragment.AdminFragment.AllHostelOwnerFragment;
-import com.hfad.hostel.Fragment.HomeFragment;
-import com.hfad.hostel.Fragment.OwnerEnquiryFragment;
-import com.hfad.hostel.Fragment.OwnerHomeFragment;
-import com.hfad.hostel.Fragment.ProfileFragement;
 
-import com.hfad.hostel.MapApi.AddLocationActivity;
 import com.hfad.hostel.R;
 import com.hfad.hostel.Storage.SharedPrefManager;
 import com.hfad.hostel.model.User;
@@ -129,7 +122,7 @@ public class AdminHomeActivity extends AppCompatActivity implements NavigationVi
                 //startActivity(new Intent(AdminHomeActivity.this, AddLocationActivity.class));
                 Objects.requireNonNull(getSupportActionBar()).setTitle((CharSequence) "Pending Requests");
 
-                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_admin, new AdminAllEnquiryFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_admin, new AdminRequestManageFragment()).commit();
                 break;
 
             case R.id.admin_nav_Login:

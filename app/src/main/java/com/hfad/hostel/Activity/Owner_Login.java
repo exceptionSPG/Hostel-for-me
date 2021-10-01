@@ -41,7 +41,8 @@ public class Owner_Login extends AppCompatActivity {
             public void onClick(View v) {
                 switch(v.getId()){
                     case R.id.tvAddNew:
-                        startActivity(new Intent(getApplicationContext(), AddLocationActivity.class));
+                        startActivity(new Intent(getApplicationContext(),HostelRequestActivity.class));
+                        //startActivity(new Intent(getApplicationContext(), AddLocationActivity.class));
                 }
             }
         });

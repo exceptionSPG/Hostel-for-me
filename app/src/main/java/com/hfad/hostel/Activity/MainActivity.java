@@ -22,13 +22,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
-import com.hfad.hostel.Fragment.EmptyFragment;
-import com.hfad.hostel.Fragment.Hostel_Near_MeFragment;
-import com.hfad.hostel.Fragment.OwnerEnquiryFragment;
-import com.hfad.hostel.Fragment.OwnerHomeFragment;
+import com.hfad.hostel.Fragment.OwnerFragment.OwnerEnquiryFragment;
+import com.hfad.hostel.Fragment.OwnerFragment.OwnerHomeFragment;
 import com.hfad.hostel.Fragment.HomeFragment;
-import com.hfad.hostel.Helper.Utilities;
+import com.hfad.hostel.Fragment.OwnerPaidUserFragment;
 import com.hfad.hostel.Fragment.ProfileFragement;
+import com.hfad.hostel.Fragment.UserViewEnquiryFragment;
 import com.hfad.hostel.MapApi.AddLocationActivity;
 import com.hfad.hostel.MapApi.MapsActivity;
 import com.hfad.hostel.R;
@@ -274,6 +273,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 //getSupportActionBar().setTitle((CharSequence) "Hostel Near Me");
                 //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Hostel_Near_MeFragment()).commit();
                 break;
+            case R.id.nav_view_enquiry:
+                getSupportActionBar().setTitle((CharSequence) "Enquiry");
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new UserViewEnquiryFragment()).commit();
+                //getSupportActionBar().setTitle((CharSequence) "Hostel Near Me");
+                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Hostel_Near_MeFragment()).commit();
+                break;
             case R.id.nav_Login:
                 if(SharedPrefManager.getInstance(this).isUserLoggedIn() || SharedPrefManager.getInstance(this).isOwnerLoggedIn()) {
                     SharedPrefManager.getInstance(this).clear();
@@ -286,10 +292,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_share:
-                Intent intent = new Intent(MainActivity.this, AddLocationActivity.class);
-//                intent.setAction(Intent.ACTION_SEND);
-//                intent.setType("text/plain");
-//                intent.putExtra(Intent.EXTRA_TEXT, "Sharing App");
+                Intent intent = new Intent();//, AddLocationActivity.class
+                intent.setAction(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, "Sharing App");
                 startActivity(intent);
                 Toast.makeText(this, "Share clicked", Toast.LENGTH_SHORT).show();
                 break;
@@ -305,9 +311,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportActionBar().setTitle((CharSequence) "Profile");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new OwnerHomeFragment()).commit();
                 break;
-            case R.id.nav_enquiry:
+            case R.id.owner_nav_enquiry:
                 getSupportActionBar().setTitle((CharSequence) "Enquiry");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new OwnerEnquiryFragment()).commit();
+                break;
+            case R.id.owner_nav_paid:
+                getSupportActionBar().setTitle((CharSequence) "Enquiry");
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new OwnerPaidUserFragment()).commit();
                 break;
             case R.id.owner_nav_Login:
                 if(SharedPrefManager.getInstance(this).isOwnerLoggedIn()) {

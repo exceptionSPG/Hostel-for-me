@@ -17,6 +17,10 @@
             android:icon="@drawable/ic_hostel_location"
             android:title="@string/menu_location" />
         <item
+            android:id="@+id/nav_view_enquiry"
+            android:icon="@drawable/ic_hostel_location"
+            android:title="View Enquiry" />
+        <item
             android:id="@+id/nav_Login"
             android:icon="@drawable/ic_login"
             android:title="@string/menu_login" />

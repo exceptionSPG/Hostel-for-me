@@ -3,6 +3,8 @@ package com.hfad.hostel.model;
 import java.util.Date;
 
 public class EnquiryModel {
+    //`eid`, `userid`, `ownerid`, `user_name`, `user_email`, `user_phone`, `owner_name`, `hostel_name`, `hostel_address`, `enquiry_status`, `enquiry_message`, `enquiry_date`, `enquiry_status_update_date`
+
     int eid, userid, ownerid;
     String user_name, user_email,user_phone,owner_name,hostel_name,hostel_address,enquiry_message;
     String enquiry_date,enquiry_status,enquiry_status_update_date;

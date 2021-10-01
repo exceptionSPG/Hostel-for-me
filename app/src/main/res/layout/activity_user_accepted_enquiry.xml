@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.User.UserAcceptedEnquiryActivity">
+
+
+    <TextView
+        android:id="@+id/tv_user_accepted_enquiry_no_data_found"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No data found."
+        android:gravity="center|center_vertical"
+        android:layout_gravity="center_vertical"
+        android:visibility="invisible"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_user_accepted_enquiry_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/user_accepted_enquiry_recycler_items"
+        />
+
+
+
+
+</LinearLayout>

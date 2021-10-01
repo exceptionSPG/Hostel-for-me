@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:drawablePadding="16dp"
+            android:weightSum="100"
+            android:background="@color/profile_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/ic_home"
+                android:ems="6"
+                android:textSize="14sp"
+                android:text="Hostel Name: "
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/tv_admin_hostel_request_details_hostel_name"
+                android:layout_width="match_parent"
+                android:ems="8"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                android:textColor="@android:color/black"
+                android:layout_height="match_parent"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:drawablePadding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/ic_location"
+                android:ems="6"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="Address: "
+                />
+            <TextView
+                android:id="@+id/tv_admin_hostel_request_details_hostel_address"
+                android:layout_width="match_parent"
+                android:ems="8"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:background="@color/profile_bg"
+            android:drawablePadding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:drawableStart="@drawable/ic_person"
+                android:ems="6"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:text="Hostel Type: "
+                />
+            <TextView
+                android:id="@+id/tv_admin_hostel_request_details_hostel_type"
+                android:layout_width="match_parent"
+                android:ems="8"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_height="match_parent"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:drawablePadding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/ic_person"
+                android:ems="6"
+                android:textSize="12sp"
+                android:text="Owner Name:  "
+                />
+            <TextView
+                android:id="@+id/tv_admin_hostel_request_details_owner_name"
+                android:layout_width="match_parent"
+                android:ems="8"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_height="match_parent"
+                />
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:drawablePadding="16dp"
+            android:background="@color/profile_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/ic_phone"
+                android:ems="6"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="Contact Number "
+                />
+            <TextView
+                android:id="@+id/tv_admin_hostel_request_details_contact_number"
+                android:layout_width="match_parent"
+                android:ems="8"
+                android:textSize="12sp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:layout_height="match_parent"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:drawablePadding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Email:"
+                android:gravity="center"
+                android:ems="6"
+                android:drawableStart="@drawable/ic_email"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_admin_hostel_request_details_hostel_email"
+                android:ems="10"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="20dp"
+            android:padding="20dp"
+            >
+                <EditText
+                    android:id="@+id/et_admin_request_details_hostel_code"
+                    android:visibility="invisible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Hostel Code"
+                    android:background="@drawable/circle_white"
+                    android:padding="10dp"
+                    />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

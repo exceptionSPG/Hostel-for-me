@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Fragment.UserViewEnquiryFragment">
+
+    <TextView
+        android:id="@+id/tv_requested_enquiry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Requested Enquiry"
+        android:gravity="center"
+        android:layout_marginTop="80dp"
+        android:background="@color/colorChamkilo"
+        android:padding="20dp"
+        android:layout_marginHorizontal="20dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_pending_enquiry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pending"
+        android:gravity="center"
+        android:layout_marginTop="80dp"
+        android:background="@color/colorChamkilo"
+        android:padding="20dp"
+        android:layout_marginHorizontal="20dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_accepted_enquiry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Accepted Enquiry"
+        android:gravity="center"
+        android:layout_marginTop="80dp"
+        android:background="@color/colorChamkilo"
+        android:padding="20dp"
+        android:layout_marginHorizontal="20dp"
+        />
+    <TextView
+        android:id="@+id/tv_rejected_enquiry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rejected Enquiry"
+        android:gravity="center"
+        android:layout_marginTop="80dp"
+        android:background="@color/colorChamkilo"
+        android:padding="20dp"
+        android:layout_marginHorizontal="20dp"
+        />
+
+
+
+
+</LinearLayout>

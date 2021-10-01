@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.hfad.hostel">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -17,10 +18,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.Admin.AdminUserManageAcitivity"></activity>
-        <activity android:name=".Activity.EnquiryActivity" />
+        android:usesCleartextTraffic="true"
+        tools:replace="android:usesCleartextTraffic">
+        <activity android:name=".Activity.User.UserRequestedEnquiryActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hfad.hostel.Activity.MainActivity" />
+        </activity>
+        <activity android:name=".Activity.User.UserRejectedEnquiryActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hfad.hostel.Activity.MainActivity" />
+        </activity>
+        <activity android:name=".Activity.RequestCheckActivity" />
+        <activity android:name=".Activity.HostelRequestActivity" />
+        <activity android:name=".Activity.User.UserPendingEnquiryActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hfad.hostel.Activity.MainActivity" />
+        </activity>
+        <activity android:name=".Activity.User.UserAcceptedEnquiryActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hfad.hostel.Activity.MainActivity" />
+        </activity>
+        <activity android:name=".Activity.Admin.AdminUserManageAcitivity" />
+        <activity android:name=".Activity.EnquiryActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hfad.hostel.Activity.HostelDetail" />
+        </activity>
         <!--
+        android:usesCleartextTraffic="true"
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
              Note that the API key is linked to the encryption key used to sign the APK.

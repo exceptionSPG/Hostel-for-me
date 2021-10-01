@@ -1,5 +1,7 @@
 package com.hfad.hostel.Interface;
 
+import com.hfad.hostel.model.AdminAllEnquiryModel;
+import com.hfad.hostel.model.AdminAllRequestModel;
 import com.hfad.hostel.model.AdminDashboardResponse;
 import com.hfad.hostel.model.AllUserResponse;
 import com.hfad.hostel.model.DefaultResponse;
@@ -7,6 +9,7 @@ import com.hfad.hostel.model.LoginResponse;
 import com.hfad.hostel.model.Owner;
 import com.hfad.hostel.model.OwnerInfoResponse;
 import com.hfad.hostel.model.OwnerLoginResponse;
+import com.hfad.hostel.model.UserEnquiryResponseModel;
 import com.hfad.hostel.model.UserInfoUpdateResponse;
 import com.hfad.hostel.model.hostelInfoByHostelCodeResponse;
 import com.hfad.hostel.model.userInfoResponse;
@@ -27,6 +30,39 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface Api {
+
+    //Required parameters userid, ownerid, username, user_email,
+    // user_phone, owner_name, hostel_name, hostel_address, enquiry_message are missing or empty"
+
+    @FormUrlEncoded
+    @POST("insertenquiry")
+    Call<DefaultResponse> createEnquiry(
+            @Field("userid") int userId,
+            @Field("ownerid") int ownerId,
+            @Field("username") String userName,
+            @Field("user_email") String userEmail,
+            @Field("user_phone") String userPhone,
+            @Field("owner_name") String ownerName,
+            @Field("hostel_name") String hostelName,
+            @Field("hostel_address") String hostelAddress,
+            @Field("enquiry_message") String enquiryMessage
+    );
+
+    //hostel_owner_name,hostel_name,hostel_location,
+    // hostel_type,contact_number,hostel_email,hostel_code,login_pwd
+    @FormUrlEncoded
+    @POST("createhostelowner")
+    Call<DefaultResponse> createOwner(
+            @Field("hostel_owner_name") String hostelOwnerName,
+            @Field("hostel_name") String hostelName,
+            @Field("hostel_location") String hostelLocation,
+            @Field("hostel_type") String hostelType,
+            @Field("hostel_email") String hostelEmail,
+            @Field("hostel_code") String hostelCode,
+            @Field("login_pwd") String hostelLoginPwd
+    );
+
+
     @FormUrlEncoded
     @POST("createuser")
     Call<DefaultResponse> createUser(
@@ -57,32 +93,6 @@ public interface Api {
             @Field("hostel_code") String hostel_code,
             @Field("login_pwd") String login_pwd
     );
-//                //`userid`, `ownerid`, `user_name`, `user_email`, `user_phone`, `owner_name`, `hostel_name`, `hostel_address`, `, `enquiry_message`,
-    //userid','ownerid','username','user_email','user_phone','hostel_name','hostel_address','enquiry_message
-    @Headers("Content-Type: multipart/form-data")
-    @Multipart
-    @POST("insertenquiry")
-    Call<DefaultResponse> insertEnquiry(
-
-//            @Part("useris") RequestBody userid,
-//            @Part("ownerid") RequestBody ownerid,
-//            @Part("user_name") RequestBody user_name,
-//            @Part("user_email") RequestBody user_email,
-//            @Part("user_phone") RequestBody user_phone,
-//            @Part("owner_name") RequestBody owner_name,
-//            @Part("hostel_name") RequestBody hostel_name,
-//            @Part("hostel_address") RequestBody hostel_address,
-//            @Part("enquiry_message") RequestBody enquiry_message
-            @Part("userid") RequestBody buserid,
-            @Part("ownerid") RequestBody bownerid,
-            @Part("user_name") RequestBody buser_name,
-            @Part("user_email") RequestBody buser_email,
-            @Part("user_phone") RequestBody buser_phone,
-            @Part("owner_name") RequestBody bowner_name,
-            @Part("hostel_name") RequestBody bhostel_name,
-            @Part("hostel_address") RequestBody bhostel_address,
-            @Part("enquiry_message") RequestBody benquiry_message
-            );
 
     @GET("allHostelOwners")
     Call<OwnerInfoResponse> getAllOwnerInfo();
@@ -156,6 +166,70 @@ public interface Api {
     @GET("allcount")
     Call<AdminDashboardResponse> getAdminData();
 
+    @GET("allenquiry")
+    Call<AdminAllEnquiryModel> getAllEnquiry();
+
+    @GET("allrequest")
+    Call<AdminAllRequestModel> getAllRequest();
+
+    @GET("pendingenquirybyowner_id/{ownerid}")
+    Call<AdminAllEnquiryModel> getOwnerAllPendingEnquiry(
+            @Path("ownerid") int sahu_id
+    );
+
+    @GET("acceptedenquirybyuser_id/{userid}")
+    Call<UserEnquiryResponseModel> getUserAllAcceptedEnquiry(
+            @Path("userid") int id
+    );
+
+    @GET("pendingenquirybyuser_id/{userid}")
+    Call<UserEnquiryResponseModel> getUserAllPendingEnquiry(
+            @Path("userid") int userID
+    );
 
 
+
+    @PUT("reviewenquirystatus/{eid}")
+    Call<DefaultResponse> approveEnquiry(
+            @Path("eid") int enquiryId
+    );
+
+    @PUT("cancelenquirystatus/{enq_id}")
+    Call<DefaultResponse> cancelEnquiry(
+            @Path("enq_id") int enquiryId
+    );
+
+
+
+    @FormUrlEncoded
+    @POST("requesthostelowner")
+    Call<DefaultResponse> insertRequest(
+            //Required parameters hostel_name, hostel_location, hos_lati, hos_longi,
+            // hostel_type, owner_name, contact_number, hostel_email are missing or empty
+
+            @Field("hostel_name") String hostelName,
+            @Field("hostel_location") String hostelAddress,
+            @Field("hostel_type") String hostelType,
+            @Field("owner_name") String ownerName,
+            @Field("contact_number") String contactNumber,
+            @Field("hostel_email") String hostelEmail
+    );
+
+
+    @GET("statusofrequestbyhrid/{hrid}")
+    Call<DefaultResponse> getRequestResultByEid(
+            @Path("hrid") int hrid
+    );
+
+    @GET("lastinsertedrequestid")
+    Call<DefaultResponse> getLastInsertetId();
+
+
+
+
+
+    @GET("approvehostelrequeststatus/{hrid}")
+    Call<DefaultResponse> approveHostelRequestStatus(
+            @Path("hrid") int hrid
+    );
 }

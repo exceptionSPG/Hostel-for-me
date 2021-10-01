@@ -20,9 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.hfad.hostel.Activity.HostelDetail;
 import com.hfad.hostel.R;
-import com.hfad.hostel.model.Owner;
-import com.hfad.hostel.model.User;
 import com.hfad.hostel.model.UserInfo;
+import com.hfad.hostel.model.User;
 
 import java.util.ArrayList;
 import java.util.List;

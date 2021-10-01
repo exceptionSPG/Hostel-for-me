@@ -1,16 +1,19 @@
 package com.hfad.hostel.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class AdminAllEnquiryModel {
-    int Total,pending,reviewed;
+    int Total,Pending,Reviewed;
     boolean error;
+    @SerializedName("enquiries")
     List<EnquiryModel> allEnquiry;
 
     public AdminAllEnquiryModel(int total, int pending, int reviewed, boolean error, List<EnquiryModel> allEnquiry) {
         Total = total;
-        this.pending = pending;
-        this.reviewed = reviewed;
+        this.Pending = pending;
+        this.Reviewed = reviewed;
         this.error = error;
         this.allEnquiry = allEnquiry;
     }
@@ -20,11 +23,11 @@ public class AdminAllEnquiryModel {
     }
 
     public int getPending() {
-        return pending;
+        return Pending;
     }
 
     public int getReviewed() {
-        return reviewed;
+        return Reviewed;
     }
 
     public boolean isError() {

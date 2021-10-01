@@ -10,11 +10,13 @@ import android.view.ViewGroup;
 
 import com.hfad.hostel.R;
 
-public class OwnerHomeFragment extends Fragment {
 
-    public OwnerHomeFragment() {
+public class OwnerPaidUserFragment extends Fragment {
+
+    public OwnerPaidUserFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,8 +26,7 @@ public class OwnerHomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_owner_home, container, false);
+        return inflater.inflate(R.layout.no_data_foung, container, false);
     }
 }

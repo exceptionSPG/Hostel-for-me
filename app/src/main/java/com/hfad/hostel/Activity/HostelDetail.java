@@ -59,6 +59,7 @@ public class HostelDetail extends AppCompatActivity {
     int ownerId;
     String ownerName;
 
+
     List<SlideModel> imageList = new ArrayList<>(); // Create image list
     ImageSlider imageSlider;
     String about_us_all = " ";
@@ -173,26 +174,28 @@ public class HostelDetail extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.det_enquiry:
-                Toast.makeText(this, "Enquiry to owner..", Toast.LENGTH_SHORT).show();
-                //your code
-                // EX : call intent if you want to swich to other activity
-                User user = SharedPrefManager.getInstance(this).getUser();
-                userAllInfoByUid userInfo = SharedPrefManager.getInstance(this).getUserInfo();
-                Intent intent = new Intent(HostelDetail.this,EnquiryActivity.class);
-                //`userid`, `ownerid`, `user_name`, `user_email`, `user_phone`, `owner_name`, `hostel_name`, `hostel_address`, `, `enquiry_message`,
-                intent.putExtra("userid",user.getUser_id());
-                intent.putExtra("ownerid",ownerId);
-                intent.putExtra("owner_name",ownerName);
-                intent.putExtra("hname",hostel_name);
-                intent.putExtra("haddress",hostel_location);
-                intent.putExtra("user_name",user.getUsername());
-                intent.putExtra("user_email",user.getEmail());
-                intent.putExtra("user_phone",userInfo.getUser_phone_number());
-                Toast.makeText(this, "user phone:"+userInfo.getUser_phone_number(), Toast.LENGTH_SHORT).show();
-                startActivity(intent);
+
+                    Toast.makeText(this, "Enquiry to owner..", Toast.LENGTH_SHORT).show();
+                    //your code
+                    // EX : call intent if you want to swich to other activity
+                    User user = SharedPrefManager.getInstance(this).getUser();
+                    userAllInfoByUid userInfo = SharedPrefManager.getInstance(this).getUserInfo();
+                    Intent intent = new Intent(HostelDetail.this, EnquiryActivity.class);
+                    //`userid`, `ownerid`, `user_name`, `user_email`, `user_phone`, `owner_name`, `hostel_name`, `hostel_address`, `, `enquiry_message`,
+                    intent.putExtra("userid", user.getUser_id());
+                    intent.putExtra("ownerid", ownerId);
+                    intent.putExtra("owner_name", ownerName);
+                    intent.putExtra("hname", hostel_name);
+                    intent.putExtra("haddress", hostel_location);
+                    intent.putExtra("user_name", user.getUsername());
+                    intent.putExtra("user_email", user.getEmail());
+                    intent.putExtra("user_phone", userInfo.getUser_phone_number());
+                    Toast.makeText(this, "user phone:" + userInfo.getUser_phone_number(), Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                    return true;
+
 
                 //customDialog(getApplicationContext(),hostel_name,hostel_location,user.getUsername(),user.getEmail(),userInfo.getUser_phone_number());
-                return true;
             case R.id.det_facebook:
                 Toast.makeText(this, "owner Facebook..", Toast.LENGTH_SHORT).show();
 

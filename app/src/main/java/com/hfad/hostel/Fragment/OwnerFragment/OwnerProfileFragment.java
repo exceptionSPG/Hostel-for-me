@@ -1,4 +1,4 @@
-package com.hfad.hostel.Fragment;
+package com.hfad.hostel.Fragment.OwnerFragment;
 
 import android.content.Intent;
 import android.os.Bundle;

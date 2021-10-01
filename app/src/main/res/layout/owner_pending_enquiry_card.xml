@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="5dp"
+    android:layout_margin="10dp"
+    android:id="@+id/cv_owner_enquiry_show_details_onclick">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="#ECE7E7"
+
+        >
+        <LinearLayout
+            android:layout_weight="8"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:id="@+id/tv_owner_enquiry_card_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:layout_weight="50"
+                    android:padding="10dp"
+                    android:text="User Name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textSize="18dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_owner_enquiry_card_user_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:drawableStart="@drawable/enquiry_email"
+                    android:drawablePadding="2dp"
+                    android:layout_weight="70"
+                    android:padding="5dp"
+                    android:text="User Email"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textSize="11dp" />
+                <TextView
+                    android:id="@+id/tv_owner_enquiry_card_user_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="2dp"
+                    android:layout_weight="30"
+                    android:layout_marginLeft="12dp"
+                    android:drawableStart="@drawable/ic_phone"
+                    android:drawablePadding="2dp"
+                    android:padding="5dp"
+                    android:text="user Phone "
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textSize="11dp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_owner_enquiry_card_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="2dp"
+                    android:paddingRight="12dp"
+                    android:drawableStart="@drawable/enquiry_person"
+                    android:padding="5dp"
+                    android:drawablePadding="2dp"
+                    android:text="Status"
+                    android:layout_weight="50"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="9dp" />
+
+                <TextView
+                    android:id="@+id/tv_owner_enquiry_card_enquiry_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="2dp"
+                    android:layout_weight="50"
+                    android:layout_marginLeft="12dp"
+                    android:padding="5dp"
+                    android:paddingRight="12dp"
+                    android:drawableStart="@drawable/enquiry_calendar"
+                    android:drawablePadding="2dp"
+                    android:text="Enquiry Date"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="9dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_owner_enquiry_card_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="2dp"
+                android:layout_weight="50"
+                android:layout_margin="1dp"
+                android:drawableStart="@drawable/enquiry_calendar"
+                android:drawablePadding="2dp"
+                android:padding="5dp"
+                android:text="Enquiry message..."
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="11dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+
+            <ImageButton
+                android:id="@+id/btn_owner_enquiry_approve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:background="#ECE7E7"
+                android:padding="12dp"
+                app:srcCompat="@drawable/ic_baseline_check_24" />
+
+            <ImageButton
+                android:id="@+id/btn_owner_enquiry_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="12dp"
+                android:background="#ECE7E7"
+                android:padding="12dp"
+                app:srcCompat="@drawable/ic_baseline_delete_forever_24" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
